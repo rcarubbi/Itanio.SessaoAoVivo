@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Apresentacao", "1. Apresentacao", "{8D68497E-B48F-4707-B2B5-422FF634AA68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Dominio", "2. Dominio", "{C602873D-3446-4320-846F-11C1C4AF754A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. AcessoADados", "3. AcessoADados", "{28228CD6-57DC-4B9E-B648-1782C3A14E23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.SessaoAoVivo.Dominio", "Itanio.SessaoAoVivo.Dominio\Itanio.SessaoAoVivo.Dominio.csproj", "{E59C7F73-AABE-4A55-8D9A-4EA2BEF17048}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infraestrutura", "4. Infraestrutura", "{B41814E0-AB9E-499D-9BAA-050C5F3537D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.SessaoAoVivo.ServicoAutenticacaoFBG", "Itanio.SessaoAoVivo.ServicoAutenticacaoFBG\Itanio.SessaoAoVivo.ServicoAutenticacaoFBG.csproj", "{42B26890-5FA6-4CEA-A267-E8897AC8FB7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.SessaoAoVivo.ServicoAutenticacao.IntegrationTests", "Itanio.SessaoAoVivo.ServicoAutenticacao.IntegrationTests\Itanio.SessaoAoVivo.ServicoAutenticacao.IntegrationTests.csproj", "{8F700ABE-F5EE-4628-8593-22201A827CE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.SessaoAoVivo.WinUI.Backoffice", "Itanio.SessaoAoVivo.WinUI.Backoffice\Itanio.SessaoAoVivo.WinUI.Backoffice.csproj", "{7704ACB9-ADCD-4581-A260-3CA312666613}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C83B153C-4250-4DD6-95B2-5E2F14C53A20} = {C83B153C-4250-4DD6-95B2-5E2F14C53A20}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.SessaoAoVivo.DAL", "Itanio.SessaoAoVivo.DAL\Itanio.SessaoAoVivo.DAL.csproj", "{3CA29A05-E2E5-44DD-9EE9-A2349FBE687B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.SessaoAoVivo.WCF.ServicosWeb", "Itanio.SessaoAoVivo.WCF.ServicosWeb\Itanio.SessaoAoVivo.WCF.ServicosWeb.csproj", "{C83B153C-4250-4DD6-95B2-5E2F14C53A20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.SessaoAoVivo.ServicosAplicacao", "Itanio.SessaoAoVivo.ServicosAplicacao\Itanio.SessaoAoVivo.ServicosAplicacao.csproj", "{D60C7D77-42B7-4995-9BE1-180346683749}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C83B153C-4250-4DD6-95B2-5E2F14C53A20} = {C83B153C-4250-4DD6-95B2-5E2F14C53A20}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.SessaoAoVivo.WebUI.Frontend", "Itanio.SessaoAoVivo.WebUI.Frontend\Itanio.SessaoAoVivo.WebUI.Frontend.csproj", "{438EFFB5-2606-4DF2-969C-AFA95181A119}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E59C7F73-AABE-4A55-8D9A-4EA2BEF17048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E59C7F73-AABE-4A55-8D9A-4EA2BEF17048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E59C7F73-AABE-4A55-8D9A-4EA2BEF17048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E59C7F73-AABE-4A55-8D9A-4EA2BEF17048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42B26890-5FA6-4CEA-A267-E8897AC8FB7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42B26890-5FA6-4CEA-A267-E8897AC8FB7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42B26890-5FA6-4CEA-A267-E8897AC8FB7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42B26890-5FA6-4CEA-A267-E8897AC8FB7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F700ABE-F5EE-4628-8593-22201A827CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F700ABE-F5EE-4628-8593-22201A827CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F700ABE-F5EE-4628-8593-22201A827CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F700ABE-F5EE-4628-8593-22201A827CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7704ACB9-ADCD-4581-A260-3CA312666613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7704ACB9-ADCD-4581-A260-3CA312666613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7704ACB9-ADCD-4581-A260-3CA312666613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7704ACB9-ADCD-4581-A260-3CA312666613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CA29A05-E2E5-44DD-9EE9-A2349FBE687B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA29A05-E2E5-44DD-9EE9-A2349FBE687B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CA29A05-E2E5-44DD-9EE9-A2349FBE687B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CA29A05-E2E5-44DD-9EE9-A2349FBE687B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C83B153C-4250-4DD6-95B2-5E2F14C53A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C83B153C-4250-4DD6-95B2-5E2F14C53A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C83B153C-4250-4DD6-95B2-5E2F14C53A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C83B153C-4250-4DD6-95B2-5E2F14C53A20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D60C7D77-42B7-4995-9BE1-180346683749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D60C7D77-42B7-4995-9BE1-180346683749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D60C7D77-42B7-4995-9BE1-180346683749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D60C7D77-42B7-4995-9BE1-180346683749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{438EFFB5-2606-4DF2-969C-AFA95181A119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{438EFFB5-2606-4DF2-969C-AFA95181A119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{438EFFB5-2606-4DF2-969C-AFA95181A119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{438EFFB5-2606-4DF2-969C-AFA95181A119}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E59C7F73-AABE-4A55-8D9A-4EA2BEF17048} = {C602873D-3446-4320-846F-11C1C4AF754A}
+		{42B26890-5FA6-4CEA-A267-E8897AC8FB7D} = {B41814E0-AB9E-499D-9BAA-050C5F3537D1}
+		{8F700ABE-F5EE-4628-8593-22201A827CE1} = {B41814E0-AB9E-499D-9BAA-050C5F3537D1}
+		{7704ACB9-ADCD-4581-A260-3CA312666613} = {8D68497E-B48F-4707-B2B5-422FF634AA68}
+		{3CA29A05-E2E5-44DD-9EE9-A2349FBE687B} = {28228CD6-57DC-4B9E-B648-1782C3A14E23}
+		{C83B153C-4250-4DD6-95B2-5E2F14C53A20} = {B41814E0-AB9E-499D-9BAA-050C5F3537D1}
+		{D60C7D77-42B7-4995-9BE1-180346683749} = {B41814E0-AB9E-499D-9BAA-050C5F3537D1}
+		{438EFFB5-2606-4DF2-969C-AFA95181A119} = {8D68497E-B48F-4707-B2B5-422FF634AA68}
+	EndGlobalSection
+EndGlobal

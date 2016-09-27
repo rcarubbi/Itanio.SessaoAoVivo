@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1e40a171-9d22-42e7-985e-5868297ff8b6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9986/GravadorArquivo.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GravadorArquivo.xsd" MetadataType="Schema" ID="36ffd51e-1af4-489d-b615-80acbbe6cd13" SourceId="1" SourceUrl="http://localhost:9986/GravadorArquivo.svc?xsd=xsd1" />
+    <MetadataFile FileName="GravadorArquivo1.xsd" MetadataType="Schema" ID="2a994fac-daa6-49cb-ada5-61d7635522d8" SourceId="1" SourceUrl="http://localhost:9986/GravadorArquivo.svc?xsd=xsd0" />
+    <MetadataFile FileName="GravadorArquivo.disco" MetadataType="Disco" ID="aa07f08d-e902-408c-8c19-603891e97dcc" SourceId="1" SourceUrl="http://localhost:9986/GravadorArquivo.svc?disco" />
+    <MetadataFile FileName="GravadorArquivoServiceImpl.wsdl" MetadataType="Wsdl" ID="bbd041d8-6dfd-4750-992a-5be7e556f0b8" SourceId="1" SourceUrl="http://localhost:9986/GravadorArquivo.svc?wsdl" />
+    <MetadataFile FileName="GravadorArquivo2.xsd" MetadataType="Schema" ID="dcffb467-aa2e-461c-bea2-83fedc1d9c9c" SourceId="1" SourceUrl="http://localhost:9986/GravadorArquivo.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

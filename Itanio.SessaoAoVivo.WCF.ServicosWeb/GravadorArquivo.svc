@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Itanio.SessaoAoVivo.WCF.ServicosWeb.GravadorArquivoServiceImpl" CodeBehind="GravadorArquivoServiceImpl.cs" %>
