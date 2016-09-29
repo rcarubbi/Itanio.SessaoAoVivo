@@ -15,7 +15,7 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             : this()
         {
             _owner = owner;
-            if (IrcClient != null)
+            if (IrcClient != null && IrcClient.IsConnected)
                 IrcClient.OnChannelMessage += IrcClient_OnChannelMessage;
             else
             {
@@ -43,17 +43,19 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
 
         private void IrcClient_OnChannelMessage(object sender, IrcEventArgs e)
         {
+            var nick = e.Data.Nick.Substring(0, e.Data.Nick.LastIndexOf("-"));
 
-            if (!_usuarios.ContainsKey(e.Data.Nick))
+
+            if (!_usuarios.ContainsKey(nick))
             {
                 IContexto contexto = new Contexto();
                 UsuarioRepository repo = new UsuarioRepository(contexto);
-                _usuarios.Add(e.Data.Nick, repo.ObterPorEmail(e.Data.Nick));
+                _usuarios.Add(nick, repo.ObterPorNick(nick));
             }
 
             flowLayoutPanelMensagens.InvokeIfRequired(x =>
             {
-                var linha = new MensagemControl(e.Data.Message, _usuarios[e.Data.Nick]);
+                var linha = new MensagemControl(e.Data.Message, _usuarios[nick]);
                 x.Controls.Add(linha);
                 if (chkRolagem.Checked)
                 {

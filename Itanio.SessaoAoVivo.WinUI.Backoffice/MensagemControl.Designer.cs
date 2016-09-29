@@ -40,16 +40,18 @@
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(32, 20);
+            this.lblNome.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNome.Location = new System.Drawing.Point(6, 4);
             this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(38, 13);
+            this.lblNome.Size = new System.Drawing.Size(39, 13);
             this.lblNome.TabIndex = 0;
             this.lblNome.Text = "Nome";
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(210, 20);
+            this.lblEmail.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(210, 4);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(35, 13);
             this.lblEmail.TabIndex = 1;
@@ -58,7 +60,8 @@
             // lblCidade
             // 
             this.lblCidade.AutoSize = true;
-            this.lblCidade.Location = new System.Drawing.Point(427, 20);
+            this.lblCidade.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCidade.Location = new System.Drawing.Point(427, 4);
             this.lblCidade.Name = "lblCidade";
             this.lblCidade.Size = new System.Drawing.Size(43, 13);
             this.lblCidade.TabIndex = 2;
@@ -67,7 +70,8 @@
             // lblUF
             // 
             this.lblUF.AutoSize = true;
-            this.lblUF.Location = new System.Drawing.Point(663, 20);
+            this.lblUF.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUF.Location = new System.Drawing.Point(587, 4);
             this.lblUF.Name = "lblUF";
             this.lblUF.Size = new System.Drawing.Size(21, 13);
             this.lblUF.TabIndex = 3;
@@ -76,9 +80,9 @@
             // lblMensagem
             // 
             this.lblMensagem.BackColor = System.Drawing.Color.White;
-            this.lblMensagem.Location = new System.Drawing.Point(32, 45);
+            this.lblMensagem.Location = new System.Drawing.Point(9, 24);
             this.lblMensagem.Name = "lblMensagem";
-            this.lblMensagem.Size = new System.Drawing.Size(655, 80);
+            this.lblMensagem.Size = new System.Drawing.Size(708, 62);
             this.lblMensagem.TabIndex = 4;
             this.lblMensagem.Text = "Mensagem";
             // 
@@ -86,7 +90,7 @@
             // 
             this.btnFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFechar.BackColor = System.Drawing.Color.Red;
-            this.btnFechar.Location = new System.Drawing.Point(692, 4);
+            this.btnFechar.Location = new System.Drawing.Point(696, -2);
             this.btnFechar.Name = "btnFechar";
             this.btnFechar.Size = new System.Drawing.Size(28, 23);
             this.btnFechar.TabIndex = 5;
@@ -97,7 +101,7 @@
             // lblDataHora
             // 
             this.lblDataHora.AutoSize = true;
-            this.lblDataHora.Location = new System.Drawing.Point(557, 135);
+            this.lblDataHora.Location = new System.Drawing.Point(586, 89);
             this.lblDataHora.Name = "lblDataHora";
             this.lblDataHora.Size = new System.Drawing.Size(130, 13);
             this.lblDataHora.TabIndex = 6;
@@ -117,7 +121,7 @@
             this.Controls.Add(this.lblNome);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "MensagemControl";
-            this.Size = new System.Drawing.Size(723, 158);
+            this.Size = new System.Drawing.Size(723, 108);
             this.ResumeLayout(false);
             this.PerformLayout();
 

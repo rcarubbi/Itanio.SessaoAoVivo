@@ -1,24 +1,101 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿
+#toast-container > div {
+    margin-bottom: 90px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+
+
+body {
+    overflow: hidden;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+
+footer.footer {
+    font-size: 11px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    line-height: 6px;
+    height: 36px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+
+footer .copyright {
+    padding-top: 13px;
+}
+
+
+footer.footer-black {
+    padding: 0px 0;
+    background: #232323;
+    background: -moz-radial-gradient(center, ellipse cover, #585858 0%, #232323 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #585858), color-stop(100%, #232323));
+    background: -webkit-radial-gradient(center, ellipse cover, #585858 0%, #232323 100%);
+    background: -o-radial-gradient(center, ellipse cover, #585858 0%, #232323 100%);
+    background: -ms-radial-gradient(center, ellipse cover, #585858 0%, #232323 100%);
+    background: radial-gradient(ellipse at center, #585858 0%, #232323 100%);
+    background-size: 550% 450%;
+}
+
+    footer.footer-black .copyright {
+        color: white;
+    }
+
+        footer.footer-black .copyright a {
+            color: white;
+        }
+
+footer ul li {
+    color: white;
+    text-transform: uppercase;
+    padding: 15px;
+    font-weight: 400;
+}
+
+h2 {
+    font-size: 2.2em;
+}
+
+
+.alert-danger ul {
+    list-style: none;
+}
+
+
+.panel {
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.22), 0 5px 10px 0 rgba(0, 0, 0, 0.22);
+}
+
+
+.panel-heading {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+    .panel-heading a:hover {
+        text-decoration: none;
+    }
+
+
+    
+.validation-summary-valid {
+    display: none;
+}
+
+.validation-summary.validation-summary-errors {
+    display: block;
+}
+
+.alert {
+    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1.3s; /* Firefox < 16 */
+    -ms-animation: fadein 1.3s; /* Internet Explorer */
+    -o-animation: fadein 1.3s; /* Opera < 12.1 */
+    animation: fadein 1.3s;
+}
+
+
+#pre-loader-loading {
+    background: url(../Content/img/loading-green.gif) no-repeat -9999px -9999px;
 }

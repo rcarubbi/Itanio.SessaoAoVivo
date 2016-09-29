@@ -77,6 +77,7 @@
             this.tileSorteios.Size = new System.Drawing.Size(176, 176);
             this.tileSorteios.TabIndex = 2;
             this.tileSorteios.Titulo = "Sorteios";
+            this.tileSorteios.TileClick += new System.EventHandler(this.tileSorteios_TileClick);
             // 
             // tileMensagens
             // 

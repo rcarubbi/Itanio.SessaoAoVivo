@@ -9,7 +9,10 @@ namespace Itanio.SessaoAoVivo.Dominio
 {
     public class Sessao : Entidade
     {
-        
+        public Sessao()
+        {
+            Logotipo = new Arquivo();
+        }
         public string Nome {  set; get; }
         public string Descricao { set; get; }
         public Arquivo Logotipo { set; get; }

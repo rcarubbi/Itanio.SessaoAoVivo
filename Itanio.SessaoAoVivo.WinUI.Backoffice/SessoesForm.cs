@@ -36,7 +36,7 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
         private void PreencherFormulario(Sessao sessao)
         {
             _nomeCanal = sessao.NomeCanal;
-            ConectarIrc();
+
             txtNomeSessao.Text = sessao.Nome;
             txtDescricao.Text = sessao.Descricao;
             txtRodape.Text = sessao.Rodape;
@@ -45,22 +45,31 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             dtpDataHoraInicio.Value = sessao.DataHoraInicio;
             lblCaminhoValor.Text = sessao.Id.ToString();
             lblLogotipoValor.Text = sessao.Logotipo.Nome;
-
-            pbLogotipo.Image = Image.FromStream(new MemoryStream(sessao.Logotipo.Conteudo));
+            if (sessao.Logotipo.Conteudo != null)
+                pbLogotipo.Image = Image.FromStream(new MemoryStream(sessao.Logotipo.Conteudo));
+            pbLogotipo.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbLogotipo.BackgroundImageLayout = ImageLayout.Stretch;
+            ConectarIrc();
             btnDesligar.Enabled = true;
             btnLigar.Enabled = false;
         }
 
         private void ConectarIrc()
         {
-            if (IrcClient == null)
-                IrcClient = new IrcClient();
-
-            IrcClient.ActiveChannelSyncing = true;
+            QuitIrc();
+            IrcClient = new IrcClient();
+            IrcClient.OnConnected -= C_OnConnected;
             IrcClient.OnConnected += C_OnConnected;
+            IrcClient.Connect(Parametro.SERVIDOR_IRC, 6667);
+        }
 
-            if (!IrcClient.IsConnected)
-                IrcClient.Connect("irc.BrasIRC.com.br", 6667);
+        private void QuitIrc()
+        {
+            if (IrcClient != null && IrcClient.IsConnected)
+            {
+                IrcClient.RfcQuit(Priority.Critical);
+                IrcClient.Disconnect();
+            }
         }
 
         private string _nomeCanal;
@@ -84,6 +93,8 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
 
         private void btnLigar_Click(object sender, EventArgs e)
         {
+            _principal.UsuariosTodos.Clear();
+            _principal.UsuariosOnLine.Clear();
             if (string.IsNullOrWhiteSpace(txtNomeSessao.Text))
             {
                 MessageBox.Show(this, "Digite o nome da sessão", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -99,26 +110,34 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             }
 
             _nomeCanal = $"#sessaoAoVivo_{txtNomeSessao.Text}";
-            ConectarIrc();
+
+            try
+            {
+                ConectarIrc();
 
 
-            IContexto contexto = new Contexto();
+                IContexto contexto = new Contexto();
 
-            sessao = LerFormulario();
-            SessaoRepository repo = new SessaoRepository(contexto, new GravadorArquivo());
-            repo.Add(sessao);
-            contexto.Salvar();
-            contexto = null;
+                sessao = LerFormulario();
+                SessaoRepository repo = new SessaoRepository(contexto, new GravadorArquivo());
+                repo.Add(sessao);
+                contexto.Salvar();
+                contexto = null;
 
-            lblCaminhoValor.Text = sessao.Id.ToString();
+                lblCaminhoValor.Text = sessao.Id.ToString();
 
-            btnDesligar.Enabled = true;
-            btnLigar.Enabled = false;
+                btnDesligar.Enabled = true;
+                btnLigar.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private Sessao LerFormulario()
         {
-            return new Sessao
+            var sessao = new Sessao
             {
                 Nome = txtNomeSessao.Text,
                 Descricao = txtDescricao.Text,
@@ -127,10 +146,12 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
                 Ativo = true,
                 CodigoYouTube = txtCodigoVideo.Text,
                 Cor = HexConverter(pnlCor.BackColor),
-                Logotipo = new Arquivo { Nome = lblLogotipoValor.Text, Conteudo = imageToByteArray(pbLogotipo.Image, lblLogotipoValor.Text) },
                 NomeCanal = _nomeCanal,
                 Rodape = txtRodape.Text,
             };
+            if (!string.IsNullOrWhiteSpace(lblLogotipoValor.Text))
+                sessao.Logotipo = new Arquivo { Nome = lblLogotipoValor.Text, Conteudo = imageToByteArray(pbLogotipo.Image, lblLogotipoValor.Text) };
+            return sessao;
         }
 
         public byte[] imageToByteArray(System.Drawing.Image imageIn, string nome)
@@ -148,7 +169,7 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             }
         }
 
-        private static String HexConverter(System.Drawing.Color c)
+        private static string HexConverter(System.Drawing.Color c)
         {
             return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
         }
@@ -156,33 +177,57 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
 
         private void C_OnConnected(object sender, EventArgs e)
         {
-            if (IrcClient.GetIrcUser($"{ txtNomeSessao.Text}_operador") == null)
-                IrcClient.Login($"{ txtNomeSessao.Text}_operador", $"{ txtNomeSessao.Text}_operador");
+            var tempNick = $"{ txtNomeSessao.Text}_operador";
 
+            IrcClient.Login(tempNick, "operador", 0);
+            Thread.Sleep(1000);
             if (!IrcClient.IsJoined(_nomeCanal))
-                IrcClient.RfcJoin(new string[] { _nomeCanal }, new string[] { "+p" });
+            {
+                Thread.Sleep(1000);
+                IrcClient.RfcJoin(_nomeCanal, Parametro.SENHA_SALAS, Priority.Critical);
+                Thread.Sleep(1000);
+            }
 
+
+            IrcClient.OnChannelMessage -= _principal.IrcClient_OnChannelMessage;
             IrcClient.OnChannelMessage += _principal.IrcClient_OnChannelMessage;
+
+            IrcClient.OnJoin -= _principal.IrcClient_OnJoin; ;
+            IrcClient.OnQuit -= _principal.IrcClient_OnQuit; ;
+            IrcClient.OnJoin += _principal.IrcClient_OnJoin; ;
+            IrcClient.OnQuit += _principal.IrcClient_OnQuit; ;
+
 
             if (_principal.MessageListener == null || !_principal.MessageListener.IsAlive)
                 _principal.MessageListener = new Thread(new ThreadStart(Listen));
 
             if (!_principal.MessageListener.IsAlive)
-                 _principal.MessageListener.Start();
+                _principal.MessageListener.Start();
+
+            var t = new Thread(new ThreadStart(Modify));
+            t.Start();
+
         }
+
+     
 
         private void Listen()
         {
             IrcClient.Listen(true);
         }
 
+        private void Modify()
+        {
+            IrcClient.RfcMode(_nomeCanal, "ps");
+            IrcClient.RfcMode(_nomeCanal, "k " + Parametro.SENHA_SALAS);
+        }
+
         private void btnDesligar_Click(object sender, EventArgs e)
         {
+            _principal.UsuariosTodos.Clear();
+            _principal.UsuariosOnLine.Clear();
             _principal.MessageListener.Abort();
-            IrcClient.RfcDie();
-            IrcClient.RfcQuit();
-            if (IrcClient.IsConnected)
-             IrcClient.Disconnect();
+            QuitIrc();
             btnLigar.Enabled = true;
             btnDesligar.Enabled = false;
 
@@ -200,9 +245,11 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             {
                 lblLogotipoValor.Text = selecionarLogotipoDialog.FileName;
                 pbLogotipo.Image = Image.FromFile(selecionarLogotipoDialog.FileName);
+                pbLogotipo.BackgroundImageLayout = ImageLayout.Stretch;
+                pbLogotipo.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
- 
+
         private void pnlCor_DoubleClick(object sender, EventArgs e)
         {
             if (corDialog.ShowDialog() == DialogResult.OK)

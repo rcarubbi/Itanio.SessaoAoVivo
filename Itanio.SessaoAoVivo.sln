@@ -32,6 +32,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.SessaoAoVivo.Servico
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itanio.SessaoAoVivo.WebUI.Frontend", "Itanio.SessaoAoVivo.WebUI.Frontend\Itanio.SessaoAoVivo.WebUI.Frontend.csproj", "{438EFFB5-2606-4DF2-969C-AFA95181A119}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C83B153C-4250-4DD6-95B2-5E2F14C53A20} = {C83B153C-4250-4DD6-95B2-5E2F14C53A20}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

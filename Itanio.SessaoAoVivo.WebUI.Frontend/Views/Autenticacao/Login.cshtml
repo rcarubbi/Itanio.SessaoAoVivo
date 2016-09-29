@@ -1,0 +1,127 @@
+﻿@model Itanio.SessaoAoVivo.WebUI.Frontend.Models.LoginViewModel
+@using Itanio.SessaoAoVivo.Dominio
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Autenticacao/_Layout.cshtml";
+}
+
+
+<div class="card card-signup">
+
+    @using (Html.BeginForm("Login", "Autenticacao", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post, new { @class = "form", id = "frmLogin" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="header header-primary text-center">
+            <h2>Sessão Ao Vivo - @Parametro.PROJETO</h2>
+            <h4>Digite seu login e sua senha do site para acessar</h4>
+        </div>
+        <div class="content">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="material-icons">email</i>
+                </span>
+                <div class="form-group label-floating">
+                    <label class="control-label">Digite seu email cadastrado</label>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", id = "txtLogin-Login" })
+                </div>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="material-icons">lock_outline</i>
+                </span>
+                <div class="form-group label-floating">
+                    <label class="control-label">Digite sua senha</label>
+                    @Html.EditorFor(x => x.Senha, new { HtmlAttributes = new { id = "txtLogin-Senha" } })
+                </div>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="material-icons">person</i>
+                </span>
+                <div class="form-group label-floating">
+                    <label class="control-label">Nome</label>
+                    @Html.TextBoxFor(x => x.Nome, new { @class = "form-control", id = "txtLogin-Nome" })
+                </div>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="material-icons">location_city</i>
+                </span>
+                <div class="form-group label-floating">
+                    <label class="control-label">Cidade</label>
+                    @Html.TextBoxFor(x => x.Cidade, new { @class = "form-control", id = "txtLogin-Cidade" })
+                </div>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="material-icons">place</i>
+                </span>
+                <div class="form-group label-floating">
+                    <label class="control-label">Estado</label>
+                    @Html.DropDownListFor(model => model.Uf, ViewBag.Ufs as SelectList, "-- Selecione --", new { @class = "form-control dropdownjs", id = "txtLogin-Uf" })
+                </div>
+
+            </div>
+            <div class="togglebutton text-center">
+                <label>
+                    @Html.CheckBoxFor(x => x.LembrarMe, new { name = "remember", id = "remember" })
+                    Me Lembrar
+                </label>
+            </div>
+
+
+        </div>
+        <div class="footer text-center">
+            <button name="login-submit" id="login-submit" class="btn btn-simple btn-primary btn-lg">Entrar</button>
+        </div>
+
+            <div id="ValidationSummaryContainer" class="container">
+
+            </div>
+
+
+    }
+</div>
+<div id="pre-loader-loading"></div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        (function () {
+            var $private = {};
+
+            $(function () {
+                $("#frmLogin").on("submit", $private.Autenticar);
+            });
+
+            $private.Autenticar = function (e) {
+                e.preventDefault();
+                $.validator.unobtrusive.parse($(this));
+
+                if ($(this).valid()) {
+                    var enviarTextoOriginal = $("#login-submit").text();
+                    var enviando = $("<img src='@Url.Content("~/Content/img/loading-green.gif")'> <span>Autenticando</span>");
+                    $("#login-submit").html(enviando);
+                    $("#login-submit").prop('disabled', true);
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: $(this).serialize(),
+                        success: function (result) {
+                            if (result.Autenticado)
+                                document.location.href = result.Url;
+                            else {
+                                $("#txtLogin-Login").val("");
+                                $("#txtLogin-Senha").val("");
+                                $("#login-submit").text(enviarTextoOriginal);
+                                $("#login-submit").prop('disabled', false);
+                                $("#ValidationSummaryContainer").html(result.ValidationSummary);
+                            }
+                        }
+                    });
+                }
+            };
+        }());
+    </script>
+}

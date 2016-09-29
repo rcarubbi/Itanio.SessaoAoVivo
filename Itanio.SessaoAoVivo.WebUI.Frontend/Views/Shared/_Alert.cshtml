@@ -1,0 +1,9 @@
+﻿
+@if (TempData["Mensagem"] != null)
+{
+    <script>
+        $(function () {
+            SessaoAoVivo.App.toastr['@TempData["TipoMensagem"]']('@TempData["Mensagem"]', '@TempData["TituloMensagem"]');
+        });
+    </script>
+}

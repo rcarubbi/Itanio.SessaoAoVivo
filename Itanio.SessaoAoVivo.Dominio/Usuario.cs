@@ -5,6 +5,8 @@ namespace Itanio.SessaoAoVivo.Dominio
 {
     public class Usuario : Entidade
     {
+        public string Nick { get; set; }
+
         public string Nome { get; set; }
 
         public string Email { get; set; }

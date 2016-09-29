@@ -61,13 +61,9 @@
     <Compile Include="Mappings\SorteioConfiguration.cs" />
     <Compile Include="Mappings\UsuarioConfiguration.cs" />
     <Compile Include="Mappings\SessaoConfiguration.cs" />
-    <Compile Include="Migrations\201609271748155_ModeloInicial.cs" />
-    <Compile Include="Migrations\201609271748155_ModeloInicial.Designer.cs">
-      <DependentUpon>201609271748155_ModeloInicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609271940367_CidadeEUf.cs" />
-    <Compile Include="Migrations\201609271940367_CidadeEUf.Designer.cs">
-      <DependentUpon>201609271940367_CidadeEUf.cs</DependentUpon>
+    <Compile Include="Migrations\201609282006540_ModeloInicial.cs" />
+    <Compile Include="Migrations\201609282006540_ModeloInicial.Designer.cs">
+      <DependentUpon>201609282006540_ModeloInicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,11 +79,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609271748155_ModeloInicial.resx">
-      <DependentUpon>201609271748155_ModeloInicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609271940367_CidadeEUf.resx">
-      <DependentUpon>201609271940367_CidadeEUf.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609282006540_ModeloInicial.resx">
+      <DependentUpon>201609282006540_ModeloInicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

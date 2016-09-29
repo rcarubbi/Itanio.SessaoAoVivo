@@ -192,13 +192,11 @@
             // 
             // pbLogotipo
             // 
-            this.pbLogotipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pbLogotipo.BackColor = System.Drawing.Color.White;
-            this.pbLogotipo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbLogotipo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbLogotipo.Location = new System.Drawing.Point(164, 215);
             this.pbLogotipo.Name = "pbLogotipo";
-            this.pbLogotipo.Size = new System.Drawing.Size(478, 205);
+            this.pbLogotipo.Size = new System.Drawing.Size(257, 205);
             this.pbLogotipo.TabIndex = 15;
             this.pbLogotipo.TabStop = false;
             // 

@@ -18,7 +18,8 @@ namespace Itanio.SessaoAoVivo.Dominio
         {
             using (TransactionScope tx = new TransactionScope())
             {
-                _gravadorArquivo.Salvar(sessao.Logotipo);
+                if (!string.IsNullOrWhiteSpace(sessao.Logotipo.Nome))
+                    _gravadorArquivo.Salvar(sessao.Logotipo);
                 _contexto.ObterLista<Sessao>().Add(sessao);
                 tx.Complete();
             }
@@ -33,7 +34,7 @@ namespace Itanio.SessaoAoVivo.Dominio
         public Sessao ObterUltimaAtiva()
         {
             var sessao = _contexto.ObterLista<Sessao>().Where(x => x.Ativo).OrderByDescending(x => x.DataCriacao).FirstOrDefault();
-            if (sessao != null)
+            if (sessao != null && !string.IsNullOrWhiteSpace(sessao.Logotipo.Nome))
             {
                 sessao.Logotipo.Conteudo = _gravadorArquivo.Obter(sessao.Logotipo.Nome);
             }

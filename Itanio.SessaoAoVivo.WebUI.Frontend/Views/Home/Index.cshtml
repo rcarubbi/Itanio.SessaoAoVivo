@@ -1,31 +1,36 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model Itanio.SessaoAoVivo.Dominio.Sessao
+@{
+    ViewBag.Title = "Home";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+    <iframe width="854" height="480" src="https://www.youtube.com/embed/@Model.CodigoYouTube" frameborder="0" allowfullscreen></iframe>
 </div>
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.Label("Mensagem:", new { @class = "control-label col-md-2" })
+        @Html.TextArea("mensagem", new { @class = "form-control", id="txt-mensagem"});
+        <button type="submit">Enviar</button>
+    }
+</div>
+
+@section scripts {
+<script>
+    
+    $(function () {
+        $("form").on("submit", function (e) {
+            e.preventDefault();
+            $.post(SessaoAoVivo.api + "Home/EnviarMensagem", 
+                $(this).serialize(),
+                function (data, status, xhr) {
+                    SessaoAoVivo.App.toastr["success"]("Mensagem enviada!", "Aviso");
+                },
+                "text");
+        });
+    });
+</script>    
+}

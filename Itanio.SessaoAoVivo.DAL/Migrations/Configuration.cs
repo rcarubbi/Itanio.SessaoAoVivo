@@ -1,9 +1,8 @@
 namespace Itanio.SessaoAoVivo.DAL.Migrations
 {
+    using Dominio;
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Itanio.SessaoAoVivo.DAL.Contexto>
     {
@@ -19,13 +18,13 @@ namespace Itanio.SessaoAoVivo.DAL.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+              context.ObterLista<Parametro>().AddOrUpdate(
+                p => p.Chave,
+                new Parametro { Ativo = true, DataCriacao = DateTime.Now, Valor = "irc.BrasIRC.com.br", Chave= Parametro.CHAVE_SERVIDOR_IRC },
+                new Parametro { Ativo = true, DataCriacao = DateTime.Now, Valor = "IT_Newest_58132_In", Chave = Parametro.CHAVE_SENHA_SALAS },
+                new Parametro { Ativo = true, DataCriacao = DateTime.Now, Valor = "FBG", Chave = Parametro.CHAVE_PROJETO }
+              );
+                
         }
     }
 }
