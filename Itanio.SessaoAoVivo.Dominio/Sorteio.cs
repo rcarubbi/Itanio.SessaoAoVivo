@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Itanio.SessaoAoVivo.Dominio
+﻿namespace Itanio.SessaoAoVivo.Dominio
 {
     public class Sorteio : Entidade
     {
@@ -14,6 +8,6 @@ namespace Itanio.SessaoAoVivo.Dominio
 
         public virtual Sessao Sessao { get; set; }
 
-
+        public virtual Usuario UsuarioSorteado { get; set; }
     }
 }

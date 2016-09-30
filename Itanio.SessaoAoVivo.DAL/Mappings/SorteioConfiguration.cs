@@ -9,6 +9,7 @@ namespace Itanio.SessaoAoVivo.DAL.Mappings
         public SorteioConfiguration()
         {
             Property(o => o.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            HasOptional(x => x.UsuarioSorteado);
         }
     }
 }

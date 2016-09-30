@@ -1,9 +1,10 @@
-﻿using Itanio.SessaoAoVivo.DAL;
+﻿using Carubbi.Utils.UIControls;
+using Itanio.SessaoAoVivo.DAL;
 using Itanio.SessaoAoVivo.Dominio;
+using Itanio.SessaoAoVivo.ServicosAplicacao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Carubbi.Utils.UIControls;
 using System.Windows.Forms;
 
 namespace Itanio.SessaoAoVivo.WinUI.Backoffice
@@ -20,12 +21,13 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
         {
             InitializeComponent();
 
-            UsuariosSorteados = new List<string>();
+         
         }
 
         public SorteioForm(FormPrincipal formPrincipal)
             : this()
         {
+            UsuariosSorteados = new List<string>();
             this.formPrincipal = formPrincipal;
         }
 
@@ -98,9 +100,26 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             IContexto ctx = new Contexto();
             UsuarioRepository repo = new UsuarioRepository(ctx);
             var usuario = repo.ObterPorEmail(usuariosASortear[indiceSorteado].Split('-')[1].Trim());
+
+            SorteioRepository repoSorteio = new SorteioRepository(ctx);
+            SessaoRepository repoSessao = new SessaoRepository(ctx, new GravadorArquivo());
+
+            repoSorteio.Add(new Sorteio {
+                DataCriacao = DateTime.Now,
+                Ativo = true,
+                Sessao = repoSessao.ObterUltimaAtiva(),
+                Descricao = "Sorteio",
+                Feito = true,
+                UsuarioSorteado = usuario
+            });
+
+            ctx.Salvar();
+
             ExibirSorteado(usuario);
             UsuariosSorteados.Add(usuario.Nome + " - " + usuario.Email);
             RefreshSorteados();
+
+            
         }
 
         private void ExibirSorteado(Usuario usuario)

@@ -1,4 +1,5 @@
 ﻿using Itanio.SessaoAoVivo.Dominio;
+using Meebey.SmartIrc4net;
 using System;
 using System.IO;
 using System.Web.Mvc;
@@ -8,6 +9,26 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
 {
     public class BaseController : Controller
     {
+        protected void QuitIrc()
+        {
+            if (IrcClient != null && IrcClient.IsConnected)
+            {
+                IrcClient.RfcQuit(Priority.Critical);
+                IrcClient.Disconnect();
+            }
+        }
+
+        public IrcClient IrcClient
+        {
+            get
+            {
+                return Session["IrcClient"] as IrcClient;
+            }
+            set
+            {
+                Session["IrcClient"] = value;
+            }
+        }
 
         protected override void OnException(ExceptionContext filterContext)
         {

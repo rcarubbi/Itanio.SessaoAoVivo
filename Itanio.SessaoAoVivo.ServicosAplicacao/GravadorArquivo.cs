@@ -1,5 +1,4 @@
-﻿using System;
-using Itanio.SessaoAoVivo.Dominio;
+﻿using Itanio.SessaoAoVivo.Dominio;
 
 namespace Itanio.SessaoAoVivo.ServicosAplicacao
 {

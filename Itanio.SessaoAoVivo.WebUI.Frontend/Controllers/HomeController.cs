@@ -9,17 +9,7 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
 {
     public class HomeController : BaseController
     {
-        public IrcClient IrcClient
-        {
-            get
-            {
-                return Session["IrcClient"] as IrcClient;
-            }
-            set
-            {
-                Session["IrcClient"] = value;
-            }
-        }
+    
 
 
         private Sessao Sessao { get; set; }
@@ -75,14 +65,7 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
             }
         }
 
-        private void QuitIrc()
-        {
-            if (IrcClient != null && IrcClient.IsConnected)
-            {
-                IrcClient.RfcQuit(Priority.Critical);
-                IrcClient.Disconnect();
-            }
-        }
+     
 
         [HttpPost]
         [ValidateAntiForgeryToken]

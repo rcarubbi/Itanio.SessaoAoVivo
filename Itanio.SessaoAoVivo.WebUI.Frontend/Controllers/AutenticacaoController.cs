@@ -37,8 +37,8 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
                 
                 Usuario usuario = LoginViewModel.ToEntity(viewModel);
 
-                if (autenticacao.Autenticar(usuario))
-                {
+               /* if (autenticacao.Autenticar(usuario))
+                {*/
                     UsuarioRepository usuRepo = new UsuarioRepository(_contexto);
                  
                     var usuarioCorrente = usuRepo.ObterPorEmail(usuario.Email);
@@ -65,11 +65,11 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
                     }
                     _contexto.Salvar();
                     return Json(new { Url = url, Autenticado = true }, JsonRequestBehavior.AllowGet);
-                }
+               /* }
                 else
                 {
                     ModelState.AddModelError("UsuarioOuSenhaInvalidos", "Usuário ou Senha inválidos");
-                }
+                }*/
             }
             return Json(new { ValidationSummary = RenderRazorViewToString("_errosValidacao", viewModel), Autenticado = false }, JsonRequestBehavior.AllowGet);
 
@@ -80,7 +80,7 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
         [Authorize]
         public ActionResult Sair()
         {
-          
+            QuitIrc();
             Session.Abandon();
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");

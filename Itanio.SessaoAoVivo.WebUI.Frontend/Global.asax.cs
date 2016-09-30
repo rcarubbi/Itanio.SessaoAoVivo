@@ -1,6 +1,6 @@
 ﻿using Itanio.SessaoAoVivo.DAL;
 using Itanio.SessaoAoVivo.Dominio;
-using System;
+using Meebey.SmartIrc4net;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -25,9 +25,16 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend
             }
         }
 
-        
 
-        
 
+        protected void Session_End()
+        {
+            var ircClient = Session["IrcClient"] as IrcClient;
+            if (ircClient != null && ircClient.IsConnected)
+            {
+                ircClient.RfcQuit(Priority.Critical);
+                ircClient.Disconnect();
+            }
+        }
     }
 }
