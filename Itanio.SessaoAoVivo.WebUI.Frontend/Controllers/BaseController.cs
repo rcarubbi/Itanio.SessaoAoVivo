@@ -33,14 +33,14 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
         protected override void OnException(ExceptionContext filterContext)
         {
     
-            if (!Request.IsAjaxRequest())
+        /*    if (!Request.IsAjaxRequest())
             {
                 base.OnException(filterContext);
                 filterContext.ExceptionHandled = true;
                 Exception e = filterContext.Exception;
                 ViewData["Exception"] = e; // pass the exception to the view
                 filterContext.Result = View("Error");
-            }
+            }*/
         }
 
         public string RenderRazorViewToString(string viewName, object model)

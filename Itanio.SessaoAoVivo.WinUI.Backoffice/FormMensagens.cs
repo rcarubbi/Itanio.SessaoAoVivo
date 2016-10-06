@@ -43,6 +43,8 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
 
         private void IrcClient_OnChannelMessage(object sender, IrcEventArgs e)
         {
+            if (e.Data.Nick.LastIndexOf("-") < 0)
+                return;
             var nick = e.Data.Nick.Substring(0, e.Data.Nick.LastIndexOf("-"));
 
 

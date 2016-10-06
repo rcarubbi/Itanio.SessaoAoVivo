@@ -109,7 +109,7 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
                 return;
             }
 
-            _nomeCanal = $"#sessaoAoVivo_{txtNomeSessao.Text}";
+            _nomeCanal = $"#sessaoAoVivo_{txtNomeSessao.Text.Replace(" ", "")}";
 
             try
             {
@@ -177,7 +177,7 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
 
         private void C_OnConnected(object sender, EventArgs e)
         {
-            var tempNick = $"{ txtNomeSessao.Text}_operador";
+            var tempNick = "operador" + DateTime.Now.ToString("ssfff");
 
             IrcClient.Login(tempNick, "operador", 0);
             Thread.Sleep(1000);

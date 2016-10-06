@@ -67,7 +67,7 @@
             this.lblTitulo.Location = new System.Drawing.Point(17, 25);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(195, 32);
-            this.lblTitulo.TabIndex = 1;
+            this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Gerenciar Sessão";
             // 
             // txtNomeSessao
@@ -88,7 +88,7 @@
             this.btnLigar.Location = new System.Drawing.Point(616, 599);
             this.btnLigar.Name = "btnLigar";
             this.btnLigar.Size = new System.Drawing.Size(106, 46);
-            this.btnLigar.TabIndex = 3;
+            this.btnLigar.TabIndex = 18;
             this.btnLigar.Text = "Ligar";
             this.btnLigar.UseVisualStyleBackColor = false;
             this.btnLigar.Click += new System.EventHandler(this.btnLigar_Click);
@@ -103,7 +103,7 @@
             this.btnDesligar.Location = new System.Drawing.Point(730, 599);
             this.btnDesligar.Name = "btnDesligar";
             this.btnDesligar.Size = new System.Drawing.Size(106, 46);
-            this.btnDesligar.TabIndex = 4;
+            this.btnDesligar.TabIndex = 19;
             this.btnDesligar.Text = "Desligar";
             this.btnDesligar.UseVisualStyleBackColor = false;
             this.btnDesligar.Click += new System.EventHandler(this.btnDesligar_Click);
@@ -115,7 +115,7 @@
             this.lblNomeSessao.Location = new System.Drawing.Point(91, 108);
             this.lblNomeSessao.Name = "lblNomeSessao";
             this.lblNomeSessao.Size = new System.Drawing.Size(67, 25);
-            this.lblNomeSessao.TabIndex = 5;
+            this.lblNomeSessao.TabIndex = 1;
             this.lblNomeSessao.Text = "Nome:";
             // 
             // lblDescricao
@@ -125,7 +125,7 @@
             this.lblDescricao.Location = new System.Drawing.Point(60, 146);
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(98, 25);
-            this.lblDescricao.TabIndex = 7;
+            this.lblDescricao.TabIndex = 3;
             this.lblDescricao.Text = "Descrição:";
             // 
             // txtDescricao
@@ -135,7 +135,7 @@
             this.txtDescricao.Location = new System.Drawing.Point(164, 143);
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(672, 32);
-            this.txtDescricao.TabIndex = 6;
+            this.txtDescricao.TabIndex = 4;
             // 
             // lblLogotipo
             // 
@@ -144,7 +144,7 @@
             this.lblLogotipo.Location = new System.Drawing.Point(67, 185);
             this.lblLogotipo.Name = "lblLogotipo";
             this.lblLogotipo.Size = new System.Drawing.Size(91, 25);
-            this.lblLogotipo.TabIndex = 9;
+            this.lblLogotipo.TabIndex = 5;
             this.lblLogotipo.Text = "Logotipo:";
             // 
             // lblCor
@@ -154,7 +154,7 @@
             this.lblCor.Location = new System.Drawing.Point(112, 444);
             this.lblCor.Name = "lblCor";
             this.lblCor.Size = new System.Drawing.Size(46, 25);
-            this.lblCor.TabIndex = 11;
+            this.lblCor.TabIndex = 8;
             this.lblCor.Text = "Cor:";
             // 
             // btnSelecionarLogotipo
@@ -166,7 +166,7 @@
             this.btnSelecionarLogotipo.Location = new System.Drawing.Point(792, 181);
             this.btnSelecionarLogotipo.Name = "btnSelecionarLogotipo";
             this.btnSelecionarLogotipo.Size = new System.Drawing.Size(44, 32);
-            this.btnSelecionarLogotipo.TabIndex = 12;
+            this.btnSelecionarLogotipo.TabIndex = 7;
             this.btnSelecionarLogotipo.Text = "...";
             this.btnSelecionarLogotipo.UseVisualStyleBackColor = false;
             this.btnSelecionarLogotipo.Click += new System.EventHandler(this.btnSelecionarLogotipo_Click);
@@ -182,7 +182,7 @@
             this.pnlCor.Location = new System.Drawing.Point(164, 438);
             this.pnlCor.Name = "pnlCor";
             this.pnlCor.Size = new System.Drawing.Size(50, 32);
-            this.pnlCor.TabIndex = 14;
+            this.pnlCor.TabIndex = 9;
             this.pnlCor.DoubleClick += new System.EventHandler(this.pnlCor_DoubleClick);
             // 
             // corDialog
@@ -207,7 +207,7 @@
             this.lblDataHoraInicio.Location = new System.Drawing.Point(233, 444);
             this.lblDataHoraInicio.Name = "lblDataHoraInicio";
             this.lblDataHoraInicio.Size = new System.Drawing.Size(154, 25);
-            this.lblDataHoraInicio.TabIndex = 16;
+            this.lblDataHoraInicio.TabIndex = 10;
             this.lblDataHoraInicio.Text = "Data/Hora Início:";
             // 
             // dtpDataHoraInicio
@@ -219,7 +219,7 @@
             this.dtpDataHoraInicio.Location = new System.Drawing.Point(393, 438);
             this.dtpDataHoraInicio.Name = "dtpDataHoraInicio";
             this.dtpDataHoraInicio.Size = new System.Drawing.Size(443, 32);
-            this.dtpDataHoraInicio.TabIndex = 17;
+            this.dtpDataHoraInicio.TabIndex = 11;
             // 
             // lblCodigoVideo
             // 
@@ -228,7 +228,7 @@
             this.lblCodigoVideo.Location = new System.Drawing.Point(27, 485);
             this.lblCodigoVideo.Name = "lblCodigoVideo";
             this.lblCodigoVideo.Size = new System.Drawing.Size(131, 25);
-            this.lblCodigoVideo.TabIndex = 19;
+            this.lblCodigoVideo.TabIndex = 12;
             this.lblCodigoVideo.Text = "Código Vídeo:";
             // 
             // txtCodigoVideo
@@ -238,7 +238,7 @@
             this.txtCodigoVideo.Location = new System.Drawing.Point(164, 482);
             this.txtCodigoVideo.Name = "txtCodigoVideo";
             this.txtCodigoVideo.Size = new System.Drawing.Size(672, 32);
-            this.txtCodigoVideo.TabIndex = 18;
+            this.txtCodigoVideo.TabIndex = 13;
             // 
             // lblRodape
             // 
@@ -247,7 +247,7 @@
             this.lblRodape.Location = new System.Drawing.Point(79, 523);
             this.lblRodape.Name = "lblRodape";
             this.lblRodape.Size = new System.Drawing.Size(79, 25);
-            this.lblRodape.TabIndex = 21;
+            this.lblRodape.TabIndex = 14;
             this.lblRodape.Text = "Rodapé:";
             // 
             // txtRodape
@@ -257,7 +257,7 @@
             this.txtRodape.Location = new System.Drawing.Point(164, 520);
             this.txtRodape.Name = "txtRodape";
             this.txtRodape.Size = new System.Drawing.Size(672, 32);
-            this.txtRodape.TabIndex = 20;
+            this.txtRodape.TabIndex = 15;
             // 
             // lblCaminho
             // 
@@ -266,7 +266,7 @@
             this.lblCaminho.Location = new System.Drawing.Point(67, 561);
             this.lblCaminho.Name = "lblCaminho";
             this.lblCaminho.Size = new System.Drawing.Size(92, 25);
-            this.lblCaminho.TabIndex = 23;
+            this.lblCaminho.TabIndex = 16;
             this.lblCaminho.Text = "Caminho:";
             // 
             // lblCaminhoValor
@@ -278,7 +278,7 @@
             this.lblCaminhoValor.Location = new System.Drawing.Point(165, 561);
             this.lblCaminhoValor.Name = "lblCaminhoValor";
             this.lblCaminhoValor.Size = new System.Drawing.Size(671, 31);
-            this.lblCaminhoValor.TabIndex = 24;
+            this.lblCaminhoValor.TabIndex = 17;
             // 
             // lblLogotipoValor
             // 
@@ -289,7 +289,7 @@
             this.lblLogotipoValor.Location = new System.Drawing.Point(164, 181);
             this.lblLogotipoValor.Name = "lblLogotipoValor";
             this.lblLogotipoValor.Size = new System.Drawing.Size(622, 31);
-            this.lblLogotipoValor.TabIndex = 25;
+            this.lblLogotipoValor.TabIndex = 6;
             // 
             // SessoesForm
             // 
