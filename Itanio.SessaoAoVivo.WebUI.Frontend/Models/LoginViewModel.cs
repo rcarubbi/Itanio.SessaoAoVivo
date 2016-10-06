@@ -16,15 +16,15 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Models
         [Required]
         public string Cidade { get; set; }
 
-        [Required]
+       // [Required]
         public string Uf { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
-        [UIHint("Senha")]
+     //   [Required]
+      //  [UIHint("Senha")]
         public string Senha { get; set; }
 
         public bool LembrarMe { get; set; }

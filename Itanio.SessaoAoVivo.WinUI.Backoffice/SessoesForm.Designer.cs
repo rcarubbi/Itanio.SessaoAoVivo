@@ -66,9 +66,9 @@
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
             this.lblTitulo.Location = new System.Drawing.Point(17, 25);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(206, 32);
+            this.lblTitulo.Size = new System.Drawing.Size(195, 32);
             this.lblTitulo.TabIndex = 1;
-            this.lblTitulo.Text = "Gerenciar Sessões";
+            this.lblTitulo.Text = "Gerenciar Sessão";
             // 
             // txtNomeSessao
             // 

@@ -1,0 +1,30 @@
+﻿@model TemaViewModel
+
+.fundo {
+    background-color: @Model.Cor
+}
+
+.texto {
+    color: @Model.Cor
+}
+
+
+ .btn-primary {
+    background-color: @Model.Cor !important;
+    box-shadow: 0 2px 2px 0 rgba(@Model.RedLight, @Model.GreenLight, @Model.BlueLight, 0.14),
+                0 3px 1px -2px rgba(@Model.RedLight, @Model.GreenLight, @Model.BlueLight, 0.2),
+                0 1px 5px 0 rgba(@Model.RedLight, @Model.GreenLight, @Model.BlueLight, 0.12) !important;  
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:focus, 
+.btn-primary:active
+{
+    box-shadow: 0 14px 26px -12px rgba(@Model.Red, @Model.Green, @Model.Blue, 0.42), 
+                0 4px 23px 0px rgba(@Model.Red, @Model.Green, @Model.Blue, 0.12), 
+                0 8px 10px -5px rgba(@Model.RedLight, @Model.GreenLight, @Model.BlueLight, 0.2);
+}
+
+.pace .pace-progress {
+    background-color: rgb(@Model.RedLight, @Model.GreenLight, @Model.BlueLight) !important;
+}

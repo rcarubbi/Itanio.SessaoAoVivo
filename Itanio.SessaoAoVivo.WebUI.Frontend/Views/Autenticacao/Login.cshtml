@@ -14,7 +14,7 @@
 
         <div class="header header-primary text-center">
             <h2>Sessão Ao Vivo - @Parametro.PROJETO</h2>
-            <h4>Digite seu login e sua senha do site para acessar</h4>
+            <h4>Digite seus dados para acessar</h4>
         </div>
         <div class="content">
             <div class="input-group">
@@ -26,7 +26,7 @@
                     @Html.TextBoxFor(x => x.Email, new { @class = "form-control", id = "txtLogin-Login" })
                 </div>
             </div>
-            <div class="input-group">
+            @*<div class="input-group">
                 <span class="input-group-addon">
                     <i class="material-icons">lock_outline</i>
                 </span>
@@ -34,7 +34,7 @@
                     <label class="control-label">Digite sua senha</label>
                     @Html.EditorFor(x => x.Senha, new { HtmlAttributes = new { id = "txtLogin-Senha" } })
                 </div>
-            </div>
+            </div>*@
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="material-icons">person</i>
@@ -59,16 +59,16 @@
                 </span>
                 <div class="form-group label-floating">
                     <label class="control-label">Estado</label>
-                    @Html.DropDownListFor(model => model.Uf, ViewBag.Ufs as SelectList, "-- Selecione --", new { @class = "form-control dropdownjs", id = "txtLogin-Uf" })
+                    @Html.DropDownListFor(model => model.Uf, ViewBag.Ufs as SelectList, " ", new { @class = "form-control dropdownjs", id = "txtLogin-Uf" })
                 </div>
 
             </div>
-            <div class="togglebutton text-center">
+            @*<div class="togglebutton text-center">
                 <label>
                     @Html.CheckBoxFor(x => x.LembrarMe, new { name = "remember", id = "remember" })
                     Me Lembrar
                 </label>
-            </div>
+            </div>*@
 
 
         </div>

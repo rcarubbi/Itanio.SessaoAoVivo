@@ -125,7 +125,7 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
                 contexto = null;
 
                 lblCaminhoValor.Text = sessao.Id.ToString();
-
+                
                 btnDesligar.Enabled = true;
                 btnLigar.Enabled = false;
             }
@@ -150,7 +150,7 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
                 Rodape = txtRodape.Text,
             };
             if (!string.IsNullOrWhiteSpace(lblLogotipoValor.Text))
-                sessao.Logotipo = new Arquivo { Nome = lblLogotipoValor.Text, Conteudo = imageToByteArray(pbLogotipo.Image, lblLogotipoValor.Text) };
+                sessao.Logotipo = new Arquivo { Nome = Path.GetFileName(lblLogotipoValor.Text), Conteudo = imageToByteArray(pbLogotipo.Image, lblLogotipoValor.Text) };
             return sessao;
         }
 

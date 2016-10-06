@@ -10,6 +10,7 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                      "~/Scripts/jquery-{version}.js",
                      "~/Scripts/jquery.unobtrusive-ajax.js",
+                       "~/Scripts/slimscroll/jquery.slimscroll.min.js",
                       "~/Scripts/jquery.dropdown/jquery.dropdown.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

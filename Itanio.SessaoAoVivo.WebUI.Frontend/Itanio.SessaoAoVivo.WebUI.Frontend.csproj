@@ -179,7 +179,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infraestrutura\CssViewResult.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\TemaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +255,7 @@
     <Content Include="Scripts\pace\pace.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\slimscroll\jquery.slimscroll.min.js" />
     <Content Include="Scripts\toastr\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
@@ -277,6 +280,7 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\_Alert.cshtml" />
     <Content Include="Views\Shared\_errosValidacao.cshtml" />
+    <Content Include="Views\Home\Tema.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

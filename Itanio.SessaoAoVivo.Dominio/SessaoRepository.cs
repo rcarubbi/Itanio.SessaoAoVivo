@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Transactions;
 
 namespace Itanio.SessaoAoVivo.Dominio
@@ -34,6 +35,14 @@ namespace Itanio.SessaoAoVivo.Dominio
         public Sessao ObterUltimaAtiva()
         {
             var sessao = _contexto.ObterLista<Sessao>().Where(x => x.Ativo).OrderByDescending(x => x.DataCriacao).FirstOrDefault();
+            if (sessao != null)
+            {
+                if (sessao.DataHoraInicio > DateTime.Now)
+                {
+                    sessao = null;
+                }
+            }
+
             if (sessao != null && !string.IsNullOrWhiteSpace(sessao.Logotipo.Nome))
             {
                 sessao.Logotipo.Conteudo = _gravadorArquivo.Obter(sessao.Logotipo.Nome);

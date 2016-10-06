@@ -1,7 +1,10 @@
 ﻿using Itanio.SessaoAoVivo.Dominio;
 using Itanio.SessaoAoVivo.ServicosAplicacao;
+using Itanio.SessaoAoVivo.WebUI.Frontend.Infraestrutura;
+using Itanio.SessaoAoVivo.WebUI.Frontend.Models;
 using Meebey.SmartIrc4net;
 using System;
+using System.Drawing;
 using System.Threading;
 using System.Web.Mvc;
 
@@ -9,16 +12,34 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
 {
     public class HomeController : BaseController
     {
-    
-
-
         private Sessao Sessao { get; set; }
-
-
-
         public HomeController(IContexto contexto)
             : base(contexto)
         {
+
+        }
+        public ActionResult Tema()
+        {
+            var repo = new SessaoRepository(_contexto, new GravadorArquivo());
+            Sessao = repo.ObterUltimaAtiva();
+
+            if (Sessao != null)
+            {
+
+                var cor = ColorTranslator.FromHtml(Sessao.Cor);
+                return new CssViewResult(new TemaViewModel
+                {
+                    Cor = Sessao.Cor,
+                    Red = cor.R,
+                    RedLight = cor.R + 100,
+                    Green = cor.G ,
+                    GreenLight = cor.G + 100,
+                    Blue = cor.B ,
+                    BlueLight = cor.B + 100
+                });
+
+            }
+            return new EmptyResult();
 
         }
 
@@ -27,6 +48,7 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
         {
             var repo = new SessaoRepository(_contexto, new GravadorArquivo());
             Sessao = repo.ObterUltimaAtiva();
+
             if (Sessao == null)
             {
                 TempData["TipoMensagem"] = "error";
@@ -35,6 +57,9 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
                 return RedirectToAction("Login", "Autenticacao");
 
             }
+
+
+
 
             ConectarIrc();
             Sessao.Usuarios.Add(_usuarioLogado);
@@ -65,7 +90,7 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
             }
         }
 
-     
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -73,7 +98,7 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
         {
             var repo = new SessaoRepository(_contexto, new GravadorArquivo());
             Sessao = repo.ObterUltimaAtiva();
-       
+
             IrcClient.SendMessage(SendType.Message, Sessao.NomeCanal, mensagem, Priority.Critical);
 
             return new HttpStatusCodeResult(200, "OK");
