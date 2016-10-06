@@ -58,7 +58,9 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             flowLayoutPanelMensagens.InvokeIfRequired(x =>
             {
                 var linha = new MensagemControl(e.Data.Message, _usuarios[nick]);
+          
                 x.Controls.Add(linha);
+               
                 if (chkRolagem.Checked)
                 {
                     (x as ScrollableControl).ScrollControlIntoView(linha);

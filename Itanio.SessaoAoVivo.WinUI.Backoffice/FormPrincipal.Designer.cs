@@ -48,6 +48,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sessão Ao Vivo - Backoffice";
             this.Titulo = "Sessão Ao Vivo";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPrincipal_FormClosed);
             this.ResumeLayout(false);
 
         }

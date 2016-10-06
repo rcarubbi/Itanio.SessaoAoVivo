@@ -21,5 +21,12 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Models
         public int GreenLight { get; set; }
 
         public int BlueLight { get; set; }
+
+        public int RedDark { get; set; }
+
+        public int GreenDark { get; set; }
+
+        public int BlueDark { get; set; }
+
     }
 }

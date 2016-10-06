@@ -41,7 +41,7 @@
             this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSair.ForeColor = System.Drawing.Color.White;
             this.btnSair.Location = new System.Drawing.Point(666, 544);
-            this.btnSair.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnSair.Margin = new System.Windows.Forms.Padding(6);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(95, 34);
             this.btnSair.TabIndex = 4;
@@ -65,6 +65,7 @@
             // 
             // chkRolagem
             // 
+            this.chkRolagem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkRolagem.AutoSize = true;
             this.chkRolagem.ForeColor = System.Drawing.Color.White;
             this.chkRolagem.Location = new System.Drawing.Point(454, 548);
@@ -87,7 +88,7 @@
             this.Controls.Add(this.btnSair);
             this.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FormMensagens";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

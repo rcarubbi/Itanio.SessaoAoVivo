@@ -81,7 +81,7 @@
             // 
             // lblMensagem
             // 
-            this.lblMensagem.BackColor = System.Drawing.Color.White;
+            this.lblMensagem.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblMensagem.Location = new System.Drawing.Point(3, 8);
             this.lblMensagem.Name = "lblMensagem";
             this.lblMensagem.Size = new System.Drawing.Size(534, 93);
@@ -115,7 +115,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.Controls.Add(this.lblMensagem);
             this.panel1.Controls.Add(this.btnFechar);
             this.panel1.Location = new System.Drawing.Point(151, 0);

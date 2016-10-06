@@ -75,8 +75,13 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             UsuarioEntrou?.Invoke(this, e);
         }
 
-
-      
+        private void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (MessageListener != null && MessageListener.IsAlive)
+            {
+                MessageListener.Abort();
+            }
+        }
     }
 
 

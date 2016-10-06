@@ -180,12 +180,12 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             var tempNick = "operador" + DateTime.Now.ToString("ssfff");
 
             IrcClient.Login(tempNick, "operador", 0);
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             if (!IrcClient.IsJoined(_nomeCanal))
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 IrcClient.RfcJoin(_nomeCanal, Parametro.SENHA_SALAS, Priority.Critical);
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
             }
 
 

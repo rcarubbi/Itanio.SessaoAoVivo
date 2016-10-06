@@ -31,11 +31,14 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
                 {
                     Cor = Sessao.Cor,
                     Red = cor.R,
-                    RedLight = cor.R + 100,
+                    RedLight = cor.R + 50,
+                    RedDark = cor.R - 50,
                     Green = cor.G ,
-                    GreenLight = cor.G + 100,
+                    GreenLight = cor.G + 50,
+                    GreenDark = cor.G - 50,
                     Blue = cor.B ,
-                    BlueLight = cor.B + 100
+                    BlueLight = cor.B + 50,
+                    BlueDark = cor.B - 50
                 });
 
             }
