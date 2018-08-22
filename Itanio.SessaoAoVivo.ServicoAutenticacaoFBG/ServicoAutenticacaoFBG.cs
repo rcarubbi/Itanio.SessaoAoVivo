@@ -1,11 +1,7 @@
-﻿using Itanio.SessaoAoVivo.Dominio;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using Itanio.SessaoAoVivo.Dominio;
+using Newtonsoft.Json;
 
 namespace Itanio.SessaoAoVivo.ServicoAutenticacaoFBG
 {
@@ -13,8 +9,9 @@ namespace Itanio.SessaoAoVivo.ServicoAutenticacaoFBG
     {
         public bool Autenticar(Usuario usuario)
         {
-            WebClient client = new WebClient();
-            string response = client.DownloadString($"http://fbg.org.br/api/Login/Autenticar/{usuario.Email}/{usuario.Senha}");
+            var client = new WebClient();
+            var response =
+                client.DownloadString($"http://fbg.org.br/api/Login/Autenticar/{usuario.Email}/{usuario.Senha}");
             var result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(response);
             return result["resultadoAutenticacao"] == 2;
         }

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace Itanio.SessaoAoVivo.Dominio
 {
     public class UsuarioRepository
     {
-        private IContexto _contexto;
+        private readonly IContexto _contexto;
+
         public UsuarioRepository(IContexto contexto)
         {
             _contexto = contexto;
@@ -18,7 +15,7 @@ namespace Itanio.SessaoAoVivo.Dominio
         {
             return _contexto.ObterLista<Usuario>().FirstOrDefault(x => x.Email == email);
         }
-     
+
 
         public Usuario ObterPorNick(string nick)
         {

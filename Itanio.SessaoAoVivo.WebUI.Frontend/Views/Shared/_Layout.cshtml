@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="IE=10">
     <title>@Parametro.PROJETO - @ViewBag.Title</title>
-    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="~/favicon.ico" type="image/ico" />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="~/favicon.ico" type="image/ico"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="apple-touch-icon" sizes="57x57" href="~/apple-icon-57x57.png">
@@ -28,7 +28,7 @@
     <meta name="msapplication-TileImage" content="~/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <script src="~/Scripts/pace/pace.min.js"></script>
-    <link href="~/content/pace/green-minimal.css" rel="stylesheet" />
+    <link href="~/content/pace/green-minimal.css" rel="stylesheet"/>
     <script>
         var SessaoAoVivo = {};
         SessaoAoVivo.api = '@Url.Content("~/")';
@@ -36,11 +36,11 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/csscustom")
     @Scripts.Render("~/bundles/modernizr")
-    @RenderSection("styles", required: false)
-    <base href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)@Url.Content("~/")" />
+    @RenderSection("styles", false)
+    <base href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)@Url.Content("~/")"/>
 </head>
 <body>
-    @RenderBody()
+@RenderBody()
 
 <footer class="footer footer-black">
     <div class="container">
@@ -66,7 +66,7 @@
 <script>
     SessaoAoVivo.IdUsuarioLogado = '@ViewBag.IdUsuarioLogado';
 </script>
-@RenderSection("scripts", required: false)
+@RenderSection("scripts", false)
 
 @Html.Partial("_Alert")
 

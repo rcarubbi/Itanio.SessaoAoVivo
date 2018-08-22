@@ -4,7 +4,7 @@ namespace Itanio.SessaoAoVivo.Dominio
 {
     public class RepositorioParametro
     {
-        private IContexto _contexto;
+        private readonly IContexto _contexto;
 
         public RepositorioParametro(IContexto contexto)
         {

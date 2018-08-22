@@ -1,31 +1,17 @@
-﻿using Carubbi.GenericRepository;
-using Itanio.SessaoAoVivo.DAL.Mappings;
-using Itanio.SessaoAoVivo.Dominio;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Carubbi.GenericRepository;
+using Itanio.SessaoAoVivo.DAL.Mappings;
+using Itanio.SessaoAoVivo.Dominio;
 
 namespace Itanio.SessaoAoVivo.DAL
 {
     public class Contexto : DbContext, IContexto
     {
-
         public Contexto()
-              : base("name=StringConexao")
+            : base("name=StringConexao")
         {
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
-            modelBuilder.ComplexType<Arquivo>().Ignore(x => x.Conteudo);
-
-            modelBuilder.Entity<Parametro>().Property(o => o.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
-            modelBuilder.Configurations.Add(new SessaoConfiguration());
-            modelBuilder.Configurations.Add(new UsuarioConfiguration());
-            modelBuilder.Configurations.Add(new SorteioConfiguration());
         }
 
         public IDbSet<TEntidade> ObterLista<TEntidade>() where TEntidade : class
@@ -43,7 +29,7 @@ namespace Itanio.SessaoAoVivo.DAL
         {
             SaveChanges();
         }
- 
+
         IDbSet<T> IDbContext.Set<T>()
         {
             return ObterLista<T>();
@@ -62,7 +48,7 @@ namespace Itanio.SessaoAoVivo.DAL
             try
             {
                 Configuration.ProxyCreationEnabled = false;
-                T poco = Entry(proxyObject).CurrentValues.ToObject() as T;
+                var poco = Entry(proxyObject).CurrentValues.ToObject() as T;
                 return poco;
             }
             finally
@@ -73,7 +59,21 @@ namespace Itanio.SessaoAoVivo.DAL
 
         public void Recarregar<T>(T entidade) where T : class
         {
-            Entry<T>(entidade).Reload();
+            Entry(entidade).Reload();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.ComplexType<Arquivo>().Ignore(x => x.Conteudo);
+
+            modelBuilder.Entity<Parametro>().Property(o => o.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            modelBuilder.Configurations.Add(new SessaoConfiguration());
+            modelBuilder.Configurations.Add(new UsuarioConfiguration());
+            modelBuilder.Configurations.Add(new SorteioConfiguration());
         }
     }
 }

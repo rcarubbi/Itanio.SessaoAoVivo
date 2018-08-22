@@ -2,8 +2,8 @@
 {
     public class SorteioRepository
     {
+        private readonly IContexto _contexto;
 
-        private IContexto _contexto;
         public SorteioRepository(IContexto contexto)
         {
             _contexto = contexto;

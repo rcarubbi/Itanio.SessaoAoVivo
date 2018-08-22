@@ -1,13 +1,12 @@
 ﻿using System.Data.Entity;
+using Carubbi.GenericRepository;
 
 namespace Itanio.SessaoAoVivo.Dominio
 {
-    public interface IContexto : Carubbi.GenericRepository.IDbContext
+    public interface IContexto : IDbContext
     {
-
         void Salvar();
 
-       
 
         void Atualizar<TEntidade>(TEntidade objetoAntigo, TEntidade objetoNovo) where TEntidade : class;
 
@@ -16,6 +15,5 @@ namespace Itanio.SessaoAoVivo.Dominio
 
         T UnProxy<T>(T proxyObject) where T : class;
         void Recarregar<T>(T entidade) where T : class;
-
     }
 }

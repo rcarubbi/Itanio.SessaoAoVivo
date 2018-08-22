@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Itanio.SessaoAoVivo.Dominio;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Itanio.SessaoAoVivo.ServicoAutenticacao.IntegrationTests
 {
@@ -23,7 +23,8 @@ namespace Itanio.SessaoAoVivo.ServicoAutenticacao.IntegrationTests
 
         private Usuario Dado_Usuario_Valido()
         {
-            return new Usuario {
+            return new Usuario
+            {
                 Email = "zane@itanio.com.br",
                 Senha = "123mudar"
             };

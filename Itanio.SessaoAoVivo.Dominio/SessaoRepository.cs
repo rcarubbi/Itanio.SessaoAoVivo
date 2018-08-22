@@ -6,8 +6,8 @@ namespace Itanio.SessaoAoVivo.Dominio
 {
     public class SessaoRepository
     {
-        private IContexto _contexto;
-        private IGravadorArquivo _gravadorArquivo;
+        private readonly IContexto _contexto;
+        private readonly IGravadorArquivo _gravadorArquivo;
 
         public SessaoRepository(IContexto contexto, IGravadorArquivo gravador)
         {
@@ -17,7 +17,7 @@ namespace Itanio.SessaoAoVivo.Dominio
 
         public void Add(Sessao sessao)
         {
-            using (TransactionScope tx = new TransactionScope())
+            using (var tx = new TransactionScope())
             {
                 if (!string.IsNullOrWhiteSpace(sessao.Logotipo.Nome))
                     _gravadorArquivo.Salvar(sessao.Logotipo);
@@ -34,19 +34,14 @@ namespace Itanio.SessaoAoVivo.Dominio
 
         public Sessao ObterUltimaAtiva()
         {
-            var sessao = _contexto.ObterLista<Sessao>().Where(x => x.Ativo).OrderByDescending(x => x.DataCriacao).FirstOrDefault();
+            var sessao = _contexto.ObterLista<Sessao>().Where(x => x.Ativo).OrderByDescending(x => x.DataCriacao)
+                .FirstOrDefault();
             if (sessao != null)
-            {
                 if (sessao.DataHoraInicio > DateTime.Now)
-                {
                     sessao = null;
-                }
-            }
 
             if (sessao != null && !string.IsNullOrWhiteSpace(sessao.Logotipo.Nome))
-            {
                 sessao.Logotipo.Conteudo = _gravadorArquivo.Obter(sessao.Logotipo.Nome);
-            }
             return sessao;
         }
     }

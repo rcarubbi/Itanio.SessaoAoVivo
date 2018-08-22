@@ -1,14 +1,28 @@
-﻿using Itanio.SessaoAoVivo.Dominio;
-using Meebey.SmartIrc4net;
-using System;
-using System.IO;
+﻿using System.IO;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Itanio.SessaoAoVivo.Dominio;
+using Meebey.SmartIrc4net;
 
 namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
 {
     public class BaseController : Controller
     {
+        protected IContexto _contexto;
+
+        protected Usuario _usuarioLogado;
+
+        public BaseController(IContexto contexto)
+        {
+            _contexto = contexto;
+        }
+
+        public IrcClient IrcClient
+        {
+            get => Session["IrcClient"] as IrcClient;
+            set => Session["IrcClient"] = value;
+        }
+
         protected void QuitIrc()
         {
             if (IrcClient != null && IrcClient.IsConnected)
@@ -18,29 +32,16 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
             }
         }
 
-        public IrcClient IrcClient
-        {
-            get
-            {
-                return Session["IrcClient"] as IrcClient;
-            }
-            set
-            {
-                Session["IrcClient"] = value;
-            }
-        }
-
         protected override void OnException(ExceptionContext filterContext)
         {
-    
-        /*    if (!Request.IsAjaxRequest())
-            {
-                base.OnException(filterContext);
-                filterContext.ExceptionHandled = true;
-                Exception e = filterContext.Exception;
-                ViewData["Exception"] = e; // pass the exception to the view
-                filterContext.Result = View("Error");
-            }*/
+            /*    if (!Request.IsAjaxRequest())
+                {
+                    base.OnException(filterContext);
+                    filterContext.ExceptionHandled = true;
+                    Exception e = filterContext.Exception;
+                    ViewData["Exception"] = e; // pass the exception to the view
+                    filterContext.Result = View("Error");
+                }*/
         }
 
         public string RenderRazorViewToString(string viewName, object model)
@@ -49,40 +50,33 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
             using (var sw = new StringWriter())
             {
                 var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext,
-                                                                         viewName);
+                    viewName);
                 var viewContext = new ViewContext(ControllerContext, viewResult.View,
-                                             ViewData, TempData, sw);
+                    ViewData, TempData, sw);
                 viewResult.View.Render(viewContext, sw);
                 viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
                 return sw.GetStringBuilder().ToString();
             }
         }
 
-        protected Usuario _usuarioLogado;
-        protected IContexto _contexto;
-        public BaseController(IContexto contexto)
-        {
-            _contexto = contexto;
-        }
-
         protected override void Initialize(RequestContext requestContext)
         {
             base.Initialize(requestContext);
 
-           /* ViewBag.AreaConhecimento = Parametro.AREA_CONHECIMENTO;
-            ViewBag.Assunto = Parametro.ASSUNTO;
-            ViewBag.Curso = Parametro.CURSO;
-            ViewBag.Aula = Parametro.AULA;
-            ViewBag.AreaConhecimentoPlural = Parametro.AREA_CONHECIMENTO_PLURAL;
-            ViewBag.AssuntoPlural = Parametro.ASSUNTO_PLURAL;
-            ViewBag.CursoPlural = Parametro.CURSO_PLURAL;
-            ViewBag.AulaPlural = Parametro.AULA_PLURAL;*/
+            /* ViewBag.AreaConhecimento = Parametro.AREA_CONHECIMENTO;
+             ViewBag.Assunto = Parametro.ASSUNTO;
+             ViewBag.Curso = Parametro.CURSO;
+             ViewBag.Aula = Parametro.AULA;
+             ViewBag.AreaConhecimentoPlural = Parametro.AREA_CONHECIMENTO_PLURAL;
+             ViewBag.AssuntoPlural = Parametro.ASSUNTO_PLURAL;
+             ViewBag.CursoPlural = Parametro.CURSO_PLURAL;
+             ViewBag.AulaPlural = Parametro.AULA_PLURAL;*/
 
-            UsuarioRepository usuarioRepo = new UsuarioRepository(_contexto);
+            var usuarioRepo = new UsuarioRepository(_contexto);
             if (HttpContext.User.Identity.IsAuthenticated)
             {
                 _usuarioLogado = usuarioRepo.ObterPorEmail(HttpContext.User.Identity.Name);
-                ViewBag.IdUsuarioLogado = _usuarioLogado != null? _usuarioLogado.Id.ToString() : string.Empty;
+                ViewBag.IdUsuarioLogado = _usuarioLogado != null ? _usuarioLogado.Id.ToString() : string.Empty;
             }
         }
     }

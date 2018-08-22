@@ -1,20 +1,22 @@
-﻿using Itanio.SessaoAoVivo.DAL;
-using Itanio.SessaoAoVivo.Dominio;
-using Itanio.SessaoAoVivo.ServicosAplicacao;
-using Meebey.SmartIrc4net;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using Carubbi.MetroLayoutEngine;
+using Itanio.SessaoAoVivo.DAL;
+using Itanio.SessaoAoVivo.Dominio;
+using Itanio.SessaoAoVivo.ServicosAplicacao;
+using Meebey.SmartIrc4net;
 
 namespace Itanio.SessaoAoVivo.WinUI.Backoffice
 {
-    public partial class SessoesForm : Carubbi.MetroLayoutEngine.MetroLayoutUserControl
+    public partial class SessoesForm : MetroLayoutUserControl
     {
+        private string _nomeCanal;
+        private readonly FormPrincipal _principal;
         private Sessao sessao;
-        private FormPrincipal _principal;
 
         public SessoesForm(FormPrincipal principal)
             : this()
@@ -22,15 +24,23 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             _principal = principal;
         }
 
+        public SessoesForm()
+        {
+            InitializeComponent();
+        }
+
+        public IrcClient IrcClient
+        {
+            get => _principal.IrcClient;
+            set => _principal.IrcClient = value;
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             IContexto contexto = new Contexto();
-            SessaoRepository repo = new SessaoRepository(contexto, new GravadorArquivo());
+            var repo = new SessaoRepository(contexto, new GravadorArquivo());
             sessao = repo.ObterUltimaAtiva();
-            if (sessao != null)
-            {
-                PreencherFormulario(sessao);
-            }
+            if (sessao != null) PreencherFormulario(sessao);
         }
 
         private void PreencherFormulario(Sessao sessao)
@@ -72,39 +82,22 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             }
         }
 
-        private string _nomeCanal;
-
-        public IrcClient IrcClient
-        {
-            get
-            {
-                return _principal.IrcClient;
-            }
-            set
-            {
-                _principal.IrcClient = value;
-            }
-        }
-
-        public SessoesForm()
-        {
-            InitializeComponent();
-        }
-
         private void btnLigar_Click(object sender, EventArgs e)
         {
             _principal.UsuariosTodos.Clear();
             _principal.UsuariosOnLine.Clear();
             if (string.IsNullOrWhiteSpace(txtNomeSessao.Text))
             {
-                MessageBox.Show(this, "Digite o nome da sessão", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "Digite o nome da sessão", "Aviso", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 txtNomeSessao.Focus();
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtCodigoVideo.Text))
             {
-                MessageBox.Show(this, "Digite o código do video", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "Digite o código do video", "Aviso", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 txtCodigoVideo.Focus();
                 return;
             }
@@ -119,13 +112,13 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
                 IContexto contexto = new Contexto();
 
                 sessao = LerFormulario();
-                SessaoRepository repo = new SessaoRepository(contexto, new GravadorArquivo());
+                var repo = new SessaoRepository(contexto, new GravadorArquivo());
                 repo.Add(sessao);
                 contexto.Salvar();
                 contexto = null;
 
                 lblCaminhoValor.Text = sessao.Id.ToString();
-                
+
                 btnDesligar.Enabled = true;
                 btnLigar.Enabled = false;
             }
@@ -147,14 +140,18 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
                 CodigoYouTube = txtCodigoVideo.Text,
                 Cor = HexConverter(pnlCor.BackColor),
                 NomeCanal = _nomeCanal,
-                Rodape = txtRodape.Text,
+                Rodape = txtRodape.Text
             };
             if (!string.IsNullOrWhiteSpace(lblLogotipoValor.Text))
-                sessao.Logotipo = new Arquivo { Nome = Path.GetFileName(lblLogotipoValor.Text), Conteudo = imageToByteArray(pbLogotipo.Image, lblLogotipoValor.Text) };
+                sessao.Logotipo = new Arquivo
+                {
+                    Nome = Path.GetFileName(lblLogotipoValor.Text),
+                    Conteudo = imageToByteArray(pbLogotipo.Image, lblLogotipoValor.Text)
+                };
             return sessao;
         }
 
-        public byte[] imageToByteArray(System.Drawing.Image imageIn, string nome)
+        public byte[] imageToByteArray(Image imageIn, string nome)
         {
             ImageFormat format = null;
             if (Path.GetExtension(nome) == ".png")
@@ -169,7 +166,7 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             }
         }
 
-        private static string HexConverter(System.Drawing.Color c)
+        private static string HexConverter(Color c)
         {
             return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
         }
@@ -192,24 +189,26 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             IrcClient.OnChannelMessage -= _principal.IrcClient_OnChannelMessage;
             IrcClient.OnChannelMessage += _principal.IrcClient_OnChannelMessage;
 
-            IrcClient.OnJoin -= _principal.IrcClient_OnJoin; ;
-            IrcClient.OnQuit -= _principal.IrcClient_OnQuit; ;
-            IrcClient.OnJoin += _principal.IrcClient_OnJoin; ;
-            IrcClient.OnQuit += _principal.IrcClient_OnQuit; ;
+            IrcClient.OnJoin -= _principal.IrcClient_OnJoin;
+            ;
+            IrcClient.OnQuit -= _principal.IrcClient_OnQuit;
+            ;
+            IrcClient.OnJoin += _principal.IrcClient_OnJoin;
+            ;
+            IrcClient.OnQuit += _principal.IrcClient_OnQuit;
+            ;
 
 
             if (_principal.MessageListener == null || !_principal.MessageListener.IsAlive)
-                _principal.MessageListener = new Thread(new ThreadStart(Listen));
+                _principal.MessageListener = new Thread(Listen);
 
             if (!_principal.MessageListener.IsAlive)
                 _principal.MessageListener.Start();
 
-            var t = new Thread(new ThreadStart(Modify));
+            var t = new Thread(Modify);
             t.Start();
-
         }
 
-     
 
         private void Listen()
         {
@@ -236,7 +235,6 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
             sessao.Ativo = false;
             sessaoRepository.Atualizar(sessao);
             contexto.Salvar();
-
         }
 
         private void btnSelecionarLogotipo_Click(object sender, EventArgs e)
@@ -252,10 +250,7 @@ namespace Itanio.SessaoAoVivo.WinUI.Backoffice
 
         private void pnlCor_DoubleClick(object sender, EventArgs e)
         {
-            if (corDialog.ShowDialog() == DialogResult.OK)
-            {
-                pnlCor.BackColor = corDialog.Color;
-            }
+            if (corDialog.ShowDialog() == DialogResult.OK) pnlCor.BackColor = corDialog.Color;
         }
     }
 }

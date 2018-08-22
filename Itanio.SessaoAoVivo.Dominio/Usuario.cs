@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace Itanio.SessaoAoVivo.Dominio
+﻿namespace Itanio.SessaoAoVivo.Dominio
 {
     public class Usuario : Entidade
     {

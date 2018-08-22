@@ -1,23 +1,24 @@
-﻿using Itanio.SessaoAoVivo.Dominio;
+﻿using System;
+using System.Drawing;
+using System.Threading;
+using System.Web.Mvc;
+using Itanio.SessaoAoVivo.Dominio;
 using Itanio.SessaoAoVivo.ServicosAplicacao;
 using Itanio.SessaoAoVivo.WebUI.Frontend.Infraestrutura;
 using Itanio.SessaoAoVivo.WebUI.Frontend.Models;
 using Meebey.SmartIrc4net;
-using System;
-using System.Drawing;
-using System.Threading;
-using System.Web.Mvc;
 
 namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
 {
     public class HomeController : BaseController
     {
-        private Sessao Sessao { get; set; }
         public HomeController(IContexto contexto)
             : base(contexto)
         {
-
         }
+
+        private Sessao Sessao { get; set; }
+
         public ActionResult Tema()
         {
             var repo = new SessaoRepository(_contexto, new GravadorArquivo());
@@ -25,7 +26,6 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
 
             if (Sessao != null)
             {
-
                 var cor = ColorTranslator.FromHtml(Sessao.Cor);
                 return new CssViewResult(new TemaViewModel
                 {
@@ -33,17 +33,16 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
                     Red = cor.R,
                     RedLight = cor.R + 50,
                     RedDark = cor.R - 50,
-                    Green = cor.G ,
+                    Green = cor.G,
                     GreenLight = cor.G + 50,
                     GreenDark = cor.G - 50,
-                    Blue = cor.B ,
+                    Blue = cor.B,
                     BlueLight = cor.B + 50,
                     BlueDark = cor.B - 50
                 });
-
             }
-            return new EmptyResult();
 
+            return new EmptyResult();
         }
 
         [Authorize]
@@ -58,10 +57,7 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
                 TempData["Mensagem"] = "Nenhuma sessão está ativa";
                 TempData["TituloMensagem"] = "Erro";
                 return RedirectToAction("Login", "Autenticacao");
-
             }
-
-
 
 
             ConectarIrc();
@@ -75,7 +71,8 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
         {
             QuitIrc();
             IrcClient = new IrcClient();
-            IrcClient.OnConnected += IrcClient_OnConnected; ;
+            IrcClient.OnConnected += IrcClient_OnConnected;
+            ;
             IrcClient.Connect(Parametro.SERVIDOR_IRC, 6667);
         }
 
@@ -94,7 +91,6 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
         }
 
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EnviarMensagem(string mensagem)
@@ -106,6 +102,5 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Controllers
 
             return new HttpStatusCodeResult(200, "OK");
         }
-
     }
 }

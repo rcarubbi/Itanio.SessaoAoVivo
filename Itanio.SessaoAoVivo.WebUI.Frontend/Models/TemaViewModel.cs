@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Itanio.SessaoAoVivo.WebUI.Frontend.Models
+﻿namespace Itanio.SessaoAoVivo.WebUI.Frontend.Models
 {
     public class TemaViewModel
     {
@@ -27,6 +22,5 @@ namespace Itanio.SessaoAoVivo.WebUI.Frontend.Models
         public int GreenDark { get; set; }
 
         public int BlueDark { get; set; }
-
     }
 }

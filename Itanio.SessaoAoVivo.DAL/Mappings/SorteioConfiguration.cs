@@ -1,6 +1,6 @@
-﻿using Itanio.SessaoAoVivo.Dominio;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
+using Itanio.SessaoAoVivo.Dominio;
 
 namespace Itanio.SessaoAoVivo.DAL.Mappings
 {

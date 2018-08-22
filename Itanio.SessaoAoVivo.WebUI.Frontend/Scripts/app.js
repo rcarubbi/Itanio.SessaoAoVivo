@@ -1,11 +1,11 @@
 ﻿SessaoAoVivo.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 
-SessaoAoVivo.App = (function () {
+SessaoAoVivo.App = (function() {
     var $public = {}, $private = {};
-    
 
-    $private.initializeToastr = function () {
+
+    $private.initializeToastr = function() {
         $public.toastr = toastr;
         $public.toastr.options = {
             "closeButton": true,
@@ -21,27 +21,27 @@ SessaoAoVivo.App = (function () {
             "hideEasing": "linear",
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
-        }
+        };
     };
 
- 
 
-    $private.initializeDropdownJs = function () {
+    $private.initializeDropdownJs = function() {
         $("select.dropdownjs").dropdownjs();
     };
-     
-    $public.AdicionarNotificacao = function (notificacao) {
+
+    $public.AdicionarNotificacao = function(notificacao) {
         $private.Notificacoes.push(notificacao);
     };
 
-    $public.InicializarControles = function () {
+    $public.InicializarControles = function() {
         for (var x = 0; x < $private.Notificacoes.length; x++) {
-            $public.toastr[$private.Notificacoes[x].TipoMensagem]($private.Notificacoes[x].Mensagem, $private.Notificacoes[x].TituloMensagem);
+            $public.toastr[$private.Notificacoes[x].TipoMensagem]($private.Notificacoes[x].Mensagem,
+                $private.Notificacoes[x].TituloMensagem);
         }
         $private.Notificacoes = [];
     };
 
-    $private.resizeSlimControl = function () {
+    $private.resizeSlimControl = function() {
 
         if ($private.mhResizeTimeout) {
             window.clearTimeout($private.mhResizeTimeout);
@@ -56,20 +56,19 @@ SessaoAoVivo.App = (function () {
         $public.initializeSlimControl(false);
     }
 
-    $public.initializeSlimControl = function (restart) {
+    $public.initializeSlimControl = function(restart) {
         if (!SessaoAoVivo.isMobile) {
             if ($private.resize || restart) {
-                $('.sidebar-container').slimScroll({ destroy: true });
+                $(".sidebar-container").slimScroll({ destroy: true });
             }
-            $('.sidebar-container').slimScroll({
+            $(".sidebar-container").slimScroll({
                 height: window.innerHeight - $(".navbar").height() - $(".footer").height() - 40,
                 railOpacity: 0.4,
                 size: 10,
             });
             $private.resize = true;
-        }
-        else {
-            $('.sidebar-container').css({
+        } else {
+            $(".sidebar-container").css({
                 "height": (window.innerHeight - $(".navbar").height() - $(".footer").height() - 40) + "px",
                 "overflow": "auto"
             });
@@ -77,17 +76,17 @@ SessaoAoVivo.App = (function () {
     };
 
 
-    $(function () {
+    $(function() {
         $private.Notificacoes = [];
-      
+
         $private.initializeDropdownJs();
         $private.initializeToastr();
         $(window).on("resize", $private.resizeSlimControl);
 
-        $(document).ajaxError(function (event, xhr, options, thrownError) {
+        $(document).ajaxError(function(event, xhr, options, thrownError) {
             var erro = $(xhr.responseText).filter("span").find("h2 > i").text();
             if (erro != "")
-                $public.toastr["error"](erro, "Erro")
+                $public.toastr["error"](erro, "Erro");
         });
     });
 
@@ -95,4 +94,3 @@ SessaoAoVivo.App = (function () {
     return $public;
 
 }());
-

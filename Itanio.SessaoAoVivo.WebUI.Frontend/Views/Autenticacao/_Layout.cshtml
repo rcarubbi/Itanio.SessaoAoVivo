@@ -1,11 +1,11 @@
-﻿@{
+﻿@using Itanio.SessaoAoVivo.Dominio
+@{
     Layout = null;
 }
-@using Itanio.SessaoAoVivo.Dominio
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width"/>
     <title>Sessão Ao Vivo @Parametro.PROJETO - Login</title>
     <meta http-equiv="x-ua-compatible" content="IE=10">
     <script>
@@ -15,8 +15,8 @@
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/csscustom")
-    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="~/favicon.ico" type="image/ico" />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="~/favicon.ico" type="image/ico"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="apple-touch-icon" sizes="57x57" href="~/apple-icon-57x57.png">
@@ -38,35 +38,35 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body class="signup-page">
-    <div class="wrapper">
-        <div class="header header-filter" style="background-image:url('https://i.ytimg.com/vi/s-8-c5O5C1g/maxresdefault.jpg'); background-size: cover; background-position: top center;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        @RenderBody()
+<div class="wrapper">
+    <div class="header header-filter" style="background-image: url('https://i.ytimg.com/vi/s-8-c5O5C1g/maxresdefault.jpg'); background-position: top center; background-size: cover;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    @RenderBody()
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="container">
+                    <nav class="pull-left">
+                        <ul>
+                            <li>
+                                Sessão Ao Vivo
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright pull-right">
+                        © 2016, feito com <i class="fa fa-heart heart"></i> por <a href="http://www.itanio.com.br" target="_blank">Itanio</a>
                     </div>
                 </div>
-
-                <footer class="footer">
-                    <div class="container">
-                        <nav class="pull-left">
-                            <ul>
-                                <li>
-                                    Sessão Ao Vivo
-                                </li>
-                            </ul>
-                        </nav>
-                        <div class="copyright pull-right">
-                            © 2016, feito com <i class="fa fa-heart heart"></i> por <a href="http://www.itanio.com.br" target="_blank">Itanio</a>
-                        </div>
-                    </div>
-                </footer>
-            </div>
+            </footer>
         </div>
     </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Html.Partial("_Alert")
-    @RenderSection("scripts", false)
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Html.Partial("_Alert")
+@RenderSection("scripts", false)
 </body>
 </html>
